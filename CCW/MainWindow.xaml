@@ -1,0 +1,66 @@
+﻿<Controls:MetroWindow x:Class="CCW.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:local="clr-namespace:CCW"
+        mc:Ignorable="d"
+        Icon="shcem.ico"
+        Title="呼叫中心" Height="465" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5">
+                <TextBox Margin="5,0,0,0" Width="120" FontSize="14" x:Name="txt_callout"
+                         Controls:TextBoxHelper.ButtonCommand=""
+                         Controls:TextBoxHelper.ButtonContent="s"
+                         Controls:TextBoxHelper.Watermark="手机号码"
+                         Style="{DynamicResource MetroButtonTextBox}" KeyDown="txt_callout_KeyDown" />
+                <Button x:Name="btn_callout" Margin="5,0,0,0" Background="#FFF7F7F7" FontSize="12" Click="btn_callout_Click">
+                    <Image Stretch="Fill" Source="/images/shcem.ico">
+                        
+                    </Image>
+                </Button>
+                <ComboBox x:Name="cb" Width="120" SelectionChanged="cb_SelectionChanged"></ComboBox>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150" MaxWidth="250" MinWidth="40"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="150" MaxWidth="250" MinWidth="40"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="150"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+            </Grid>
+            <GridSplitter Width="5" Grid.Column="0"></GridSplitter>
+            <Grid Grid.Column="1">
+                <Controls:MetroAnimatedSingleRowTabControl Controls:TabControlHelper.Underlined="SelectedTabItem" Margin="5 0">
+                    <Controls:MetroTabItem CloseButtonEnabled="True" x:Name="test" Header="header">
+                        <TextBlock FontSize="30" Text="first content" />
+                    </Controls:MetroTabItem>
+                    <Controls:MetroTabItem CloseButtonEnabled="True" x:Name="test1" Header="header1">
+                        <TextBlock FontSize="30" Text="first content123" />
+                    </Controls:MetroTabItem>
+                </Controls:MetroAnimatedSingleRowTabControl>
+            </Grid>
+            <GridSplitter Width="5" Grid.Column="2" HorizontalAlignment="Left"></GridSplitter>
+            <Grid Grid.Column="2">
+
+            </Grid>
+        </Grid>
+        <StatusBar Grid.Row="2">
+
+        </StatusBar>
+    </Grid>
+
+</Controls:MetroWindow>
