@@ -5,9 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:local="clr-namespace:CCW"
+        xmlns:localCtrl="clr-namespace:CCW.Controls"
+        xmlns:dd="urn:gong-wpf-dragdrop"
         mc:Ignorable="d"
         Icon="shcem.ico"
         Title="呼叫中心" Height="465" Width="800">
+    <Window.Resources>
+        <Style TargetType="{x:Type ListBox}">
+            <!-- Swap out the default items panel with a WrapPanel so that
+           the images will be arranged with a different layout. -->
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <!-- Set this attached property to 'Disabled' so that the 
+           ScrollViewer in the ListBox will never show a horizontal 
+           scrollbar, and the WrapPanel it contains will be constrained 
+           to the width of the ScrollViewer's viewable surface. -->
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" 
+        Value="Disabled" />
+        </Style>
+    </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
@@ -44,13 +67,23 @@
             </Grid>
             <GridSplitter Width="5" Grid.Column="0"></GridSplitter>
             <Grid Grid.Column="1">
-                <Controls:MetroAnimatedSingleRowTabControl Controls:TabControlHelper.Underlined="SelectedTabItem" Margin="5 0">
-                    <Controls:MetroTabItem CloseButtonEnabled="True" x:Name="test" Header="header">
-                        <TextBlock FontSize="30" Text="first content" />
+                <Controls:MetroAnimatedSingleRowTabControl x:Name="tab_linkCard" Controls:TabControlHelper.Underlined="SelectedTabItem" Margin="5 0">
+                    <!--<Controls:MetroTabItem CloseButtonEnabled="True" x:Name="test" Header="header">
+                        <ListBox x:Name="list" HorizontalAlignment="Left" Margin="2"
+                             dd:DragDrop.DropHandler="{Binding}"
+                             dd:DragDrop.DropTargetAdornerBrush="Coral"
+                             dd:DragDrop.IsDragSource="True"
+                             dd:DragDrop.IsDropTarget="True" >
+                            <localCtrl:LinkCardPanelCtrl></localCtrl:LinkCardPanelCtrl>
+                            <localCtrl:LinkCardPanelCtrl></localCtrl:LinkCardPanelCtrl>
+                            <localCtrl:LinkCardPanelCtrl></localCtrl:LinkCardPanelCtrl>
+                            <localCtrl:LinkCardPanelCtrl></localCtrl:LinkCardPanelCtrl>
+                            <localCtrl:LinkCardPanelCtrl></localCtrl:LinkCardPanelCtrl>
+                        </ListBox>
                     </Controls:MetroTabItem>
                     <Controls:MetroTabItem CloseButtonEnabled="True" x:Name="test1" Header="header1">
                         <TextBlock FontSize="30" Text="first content123" />
-                    </Controls:MetroTabItem>
+                    </Controls:MetroTabItem>-->
                 </Controls:MetroAnimatedSingleRowTabControl>
             </Grid>
             <GridSplitter Width="5" Grid.Column="2" HorizontalAlignment="Left"></GridSplitter>

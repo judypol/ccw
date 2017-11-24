@@ -1,4 +1,5 @@
-﻿using MahApps.Metro.Controls;
+﻿using CCW.Controls;
+using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GongSolutions.Wpf.DragDrop;
 
 namespace CCW
 {
@@ -24,7 +26,55 @@ namespace CCW
         public MainWindow()
         {
             InitializeComponent();
+            AddOneTab("tab1");
+            AddOneTab("tab2");
+
+            this.tab_linkCard.SelectedIndex = 0;
+
+            this.tab_linkCard.SelectionChanged += Tab_linkCard_SelectionChanged;
+            
         }
+
+        private void Tab_linkCard_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(e.Source is TabControl)
+            {
+                RefreshSelectedTab();
+            }
+            
+            //throw new NotImplementedException();
+        }
+        #region MyRegion
+        private void AddOneTab(String groupName)
+        {
+            MetroTabItem metroTabItem = new MetroTabItem();
+            metroTabItem.Name = groupName;
+            metroTabItem.Header = groupName;
+            metroTabItem.CloseButtonEnabled = true;
+
+            ListBox listBox = new ListBox();
+            listBox.Margin = new Thickness(2);
+            //GongSolutions.Wpf.DragDrop.DragDrop.SetDragHandler();
+            GongSolutions.Wpf.DragDrop.DragDrop.SetIsDragSource(listBox, true);
+            GongSolutions.Wpf.DragDrop.DragDrop.SetIsDropTarget(listBox, true);
+            GongSolutions.Wpf.DragDrop.DragDrop.SetDropTargetAdornerBrush(listBox, new SolidColorBrush(Colors.Coral));
+            metroTabItem.Content = listBox;
+            
+            
+            this.tab_linkCard.Items.Add(metroTabItem);
+        }
+        private void RefreshSelectedTab()
+        {
+            var curTab = (MetroTabItem)this.tab_linkCard.SelectedItem;
+            var listBox = (ListBox)curTab.Content;
+
+            listBox.Items.Add(new LinkCardPanelCtrl());
+            listBox.Items.Add(new LinkCardPanelCtrl());
+            listBox.Items.Add(new LinkCardPanelCtrl());
+            listBox.Items.Add(new LinkCardPanelCtrl());
+        }
+        #endregion
+
 
         private void txt_callout_KeyDown(object sender, KeyEventArgs e)
         {
