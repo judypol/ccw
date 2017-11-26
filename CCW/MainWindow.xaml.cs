@@ -60,18 +60,38 @@ namespace CCW
             GongSolutions.Wpf.DragDrop.DragDrop.SetDropTargetAdornerBrush(listBox, new SolidColorBrush(Colors.Coral));
             metroTabItem.Content = listBox;
             
-            
             this.tab_linkCard.Items.Add(metroTabItem);
         }
         private void RefreshSelectedTab()
         {
             var curTab = (MetroTabItem)this.tab_linkCard.SelectedItem;
+            if (curTab == null)
+                return;
             var listBox = (ListBox)curTab.Content;
 
-            listBox.Items.Add(new LinkCardPanelCtrl());
-            listBox.Items.Add(new LinkCardPanelCtrl());
-            listBox.Items.Add(new LinkCardPanelCtrl());
-            listBox.Items.Add(new LinkCardPanelCtrl());
+            listBox.Items.Add(new LinkCardPanelCtrl(new Models.LinkCardModel {
+                Name="lisi",
+                Mobile1="13818894125"
+            }));
+            listBox.Items.Add(new LinkCardPanelCtrl(new Models.LinkCardModel {
+                Name="展示2",
+                Mobile1="14589781245",
+                Phone1="13978457845",
+                Phone2="45127844557"
+            }));
+            listBox.Items.Add(new LinkCardPanelCtrl(new Models.LinkCardModel {
+                Name = "展示1",
+                Phone1 = "13978457845",
+                Phone2 = "45127844557",
+                Mobile1="457894568745"
+            }));
+            listBox.Items.Add(new LinkCardPanelCtrl(new Models.LinkCardModel {
+                Name = "展示4323",
+                Phone1 = "13978457845",
+                Phone2 = "45127844557",
+                Mobile1 = "457894568745",
+                Mobile2="13546879478"
+            }));
         }
         #endregion
 
